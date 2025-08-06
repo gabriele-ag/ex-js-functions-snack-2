@@ -38,7 +38,7 @@ console.log(eseguiOperazione(6,8, moltiplicazione))
 function creaTimer(tempo) {
     return function conteggio() {
         setTimeout(() => {
-            console.log("Tempo scaduto!")
+            // console.log("Tempo scaduto!")
         }, tempo)
     }
 }
@@ -54,11 +54,11 @@ function stampaOgniSecondo(time) {
     
     const messaggio = setInterval(() => {
         contatore++
-        console.log("Messaggio stampato")
+        // console.log("Messaggio stampato")
 
         if (contatore === 5) {
                 clearInterval(messaggio)
-                console.log("Messaggio terminato")
+                // console.log("Messaggio terminato")
             }
 
         }, time)
@@ -79,11 +79,11 @@ function creaContatoreAutomatico(time) {
     return function intervallo() {
         const messaggio = setInterval(() => {
             contatore++
-            console.log(contatore)
+            // console.log(contatore)
 
             if (contatore === 5) {
                 clearInterval(messaggio)
-                console.log("Fine del conteggio")
+                // console.log("Fine del conteggio")
             }
 
         }, time)
@@ -94,3 +94,23 @@ function creaContatoreAutomatico(time) {
 const conteggio1 = creaContatoreAutomatico(1000)
 conteggio1()
 
+
+// Snack 7
+
+// Crea una funzione che ferma un timer dopo un certo tempo
+// Scrivi una funzione eseguiEferma che accetta un messaggio, un tempo di avvio e un tempo di stop. Il messaggio deve essere stampato a intervalli regolari, ma si deve fermare dopo il tempo di stop.
+
+function eseguiEferma(msg, tempoavvio, tempostop) {
+    let conteggio = tempoavvio
+    const intervallo = setInterval(() => {
+        conteggio--
+        console.log(msg)
+        if (conteggio === tempostop) {
+            clearInterval(intervallo)
+            console.log("Tempo scaduto")
+        }
+        }, 1000)
+     return
+}
+
+eseguiEferma("ciao", 5, 0)
