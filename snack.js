@@ -119,10 +119,10 @@ function contoAllaRovescia(numero) {
     let conteggio = numero
     const intervallo = setInterval(() => {
         conteggio--
-        console.log(conteggio)
+        // console.log(conteggio)
         if (conteggio === 0) {
             clearInterval(intervallo)
-            console.log("Tempo scaduto!")
+            // console.log("Tempo scaduto!")
         }
         }, 1000)
      return
@@ -130,3 +130,27 @@ function contoAllaRovescia(numero) {
 
 contoAllaRovescia(5)
 
+
+// Snack 9
+
+// Creare una funzione che esegue una sequenza di operazioni con ritardi
+// Scrivi una funzione sequenzaOperazioni che accetta un array di operazioni (funzioni) e un tempo di intervallo.
+
+// Ogni operazione deve essere eseguita in sequenza con un ritardo uguale al tempo di intervallo.
+
+const operazione = [() => console.log("Operazione 1"), () => console.log("Operazione 2"), () => console.log("Operazione 3")]
+
+function sequenzaOperazioni(array, time) {
+    let index = 0
+    
+        const intervallo = setInterval(() => {
+        array[index]()
+        index++
+        if (index === array.length) {
+            clearInterval(intervallo)
+            console.log("Fine operazione")
+        }
+        }, time)
+}
+
+sequenzaOperazioni(operazione, 2000);
