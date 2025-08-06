@@ -50,17 +50,40 @@ timer1()
 // Snack 5
 
 function stampaOgniSecondo(time) {
+    let contatore = 0
+    
+    const messaggio = setInterval(() => {
+        contatore++
+        console.log("Messaggio stampato")
+
+        if (contatore === 5) {
+                clearInterval(messaggio)
+                console.log("Messaggio terminato")
+            }
+
+        }, time)
+    
+    return messaggio
+    
+}
+
+console.log(stampaOgniSecondo(1000))
+
+
+// Snack 6
+
+function creaContatoreAutomatico(time) {
 
     let contatore = 0
 
     return function intervallo() {
         const messaggio = setInterval(() => {
             contatore++
-            console.log("Messaggio stampato")
+            console.log(contatore)
 
             if (contatore === 5) {
                 clearInterval(messaggio)
-                console.log("Messaggio terminato")
+                console.log("Fine del conteggio")
             }
 
         }, time)
@@ -68,5 +91,6 @@ function stampaOgniSecondo(time) {
     }
 }
 
-const conteggio1 = stampaOgniSecondo(1000)
+const conteggio1 = creaContatoreAutomatico(1000)
 conteggio1()
+
