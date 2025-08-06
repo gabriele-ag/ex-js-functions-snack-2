@@ -102,7 +102,7 @@ function eseguiEferma(msg, tempoavvio, tempostop) {
     let conteggio = tempoavvio
     const intervallo = setInterval(() => {
         conteggio--
-        console.log(msg)
+        // console.log(msg)
         if (conteggio === tempostop) {
             clearInterval(intervallo)
         }
@@ -111,3 +111,22 @@ function eseguiEferma(msg, tempoavvio, tempostop) {
 }
 
 eseguiEferma("ciao", 5, 0)
+
+
+// Snack 8
+
+function contoAllaRovescia(numero) {
+    let conteggio = numero
+    const intervallo = setInterval(() => {
+        conteggio--
+        console.log(conteggio)
+        if (conteggio === 0) {
+            clearInterval(intervallo)
+            console.log("Tempo scaduto!")
+        }
+        }, 1000)
+     return
+}
+
+contoAllaRovescia(5)
+
