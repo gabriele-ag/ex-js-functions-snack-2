@@ -38,7 +38,7 @@ console.log(eseguiOperazione(6,8, moltiplicazione))
 function creaTimer(tempo) {
     return function conteggio() {
         setTimeout(() => {
-            // console.log("Tempo scaduto!")
+            console.log("Tempo scaduto!")
         }, tempo)
     }
 }
@@ -49,25 +49,25 @@ timer1()
 
 // Snack 5
 
-function stampaOgniSecondo(time) {
+function stampaOgniSecondo(msg) {
     let contatore = 0
     
-    const messaggio = setInterval(() => {
+    const intervallo = setInterval(() => {
         contatore++
-        // console.log("Messaggio stampato")
+        console.log(msg)
 
         if (contatore === 5) {
-                clearInterval(messaggio)
-                // console.log("Messaggio terminato")
+                clearInterval(intervallo)
+                console.log("Messaggio terminato")
             }
 
-        }, time)
+        }, 1000)
     
-    return messaggio
+    return intervallo
     
 }
 
-console.log(stampaOgniSecondo(1000))
+console.log(stampaOgniSecondo("ciao"))
 
 
 // Snack 6
@@ -79,11 +79,11 @@ function creaContatoreAutomatico(time) {
     return function intervallo() {
         const messaggio = setInterval(() => {
             contatore++
-            // console.log(contatore)
+            console.log(contatore)
 
             if (contatore === 5) {
                 clearInterval(messaggio)
-                // console.log("Fine del conteggio")
+                console.log("Fine del conteggio")
             }
 
         }, time)
@@ -102,7 +102,7 @@ function eseguiEferma(msg, tempoavvio, tempostop) {
     let conteggio = tempoavvio
     const intervallo = setInterval(() => {
         conteggio--
-        // console.log(msg)
+        console.log(msg)
         if (conteggio === tempostop) {
             clearInterval(intervallo)
         }
@@ -119,10 +119,10 @@ function contoAllaRovescia(numero) {
     let conteggio = numero
     const intervallo = setInterval(() => {
         conteggio--
-        // console.log(conteggio)
+        console.log(conteggio)
         if (conteggio === 0) {
             clearInterval(intervallo)
-            // console.log("Tempo scaduto!")
+            console.log("Tempo scaduto!")
         }
         }, 1000)
      return
@@ -133,24 +133,68 @@ contoAllaRovescia(5)
 
 // Snack 9
 
-// Creare una funzione che esegue una sequenza di operazioni con ritardi
-// Scrivi una funzione sequenzaOperazioni che accetta un array di operazioni (funzioni) e un tempo di intervallo.
 
-// Ogni operazione deve essere eseguita in sequenza con un ritardo uguale al tempo di intervallo.
+// const operazione = [() => console.log("Operazione 1"), () => console.log("Operazione 2"), () => console.log("Operazione 3")]
 
-const operazione = [() => console.log("Operazione 1"), () => console.log("Operazione 2"), () => console.log("Operazione 3")]
-
-function sequenzaOperazioni(array, time) {
-    let index = 0
+// function sequenzaOperazioni(array, time) {
+//     let index = 0
     
-        const intervallo = setInterval(() => {
-        array[index]()
-        index++
-        if (index === array.length) {
-            clearInterval(intervallo)
-            console.log("Fine operazione")
-        }
-        }, time)
+//         const intervallo = setInterval(() => {
+//         array[index]()
+//         index++
+//         if (index === array.length) {
+//             clearInterval(intervallo)
+//             console.log("Fine operazione")
+//         }
+//         }, time)
+// }
+
+// sequenzaOperazioni(operazione, 2000);
+
+// esecuzione esatta
+
+const array = [() => console.log("Operazione 1"), () => console.log("Operazione 2"), () => console.log("Operazione 3")]
+
+function sequenzaOperazioni(operazioni, intervallo) {
+    operazioni.forEach((curOperazione, index) => {
+        setTimeout(() => {
+            curOperazione()
+        }, intervallo * index)
+    });
 }
 
-sequenzaOperazioni(operazione, 2000);
+sequenzaOperazioni(array, 2000)
+
+
+// Snack 10
+
+// Creare un throttler per limitare l’esecuzione di una funzione
+// Scrivi una funzione creaThrottler che accetta una funzione e un tempo `limite`.
+
+// Restituisce una nuova funzione che, quando chiamata ripetutamente, esegue l'operazione originale al massimo una volta ogni n millisecondi.
+
+
+function creaThrottler(callback, limite) {
+    let ultimaEsecuzione = 0;
+
+    return function (...args) {
+    const ora = Date.now();
+    if (ora - ultimaEsecuzione >= limite) {
+        ultimaEsecuzione = ora;
+        callback(...args)
+    } else {
+        console.log("impossibile eseguire")
+    }
+}
+}
+
+const throttledLog = creaThrottler(() => console.log("Eseguito!"), 2000);
+
+throttledLog(); // ✅ "Eseguito!"
+throttledLog(); // ❌ Ignorato (chiamato troppo presto)
+setTimeout(throttledLog, 2500); // ✅ "Eseguito!" (dopo 2.5 secondi)
+
+
+
+
+
