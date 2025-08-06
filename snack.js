@@ -8,4 +8,9 @@ function somma(num1, num2) {
 console.log(somma(2,3))
 
 
+// Snack 2
+
+const quadrato = (num) => num * num
+
+console.log(quadrato(5))
 
