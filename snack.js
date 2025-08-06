@@ -34,3 +34,14 @@ console.log(eseguiOperazione(6,8, moltiplicazione))
 
 
 // Snack 4
+
+function creaTimer(tempo) {
+    return function conteggio() {
+        setTimeout(() => {
+            console.log("Tempo scaduto!")
+        }, tempo)
+    }
+}
+
+const timer1 = creaTimer(3000)
+timer1()
