@@ -45,3 +45,28 @@ function creaTimer(tempo) {
 
 const timer1 = creaTimer(3000)
 timer1()
+
+
+// Snack 5
+
+function stampaOgniSecondo(time) {
+
+    let contatore = 0
+
+    return function intervallo() {
+        const messaggio = setInterval(() => {
+            contatore++
+            console.log("Messaggio stampato")
+
+            if (contatore === 5) {
+                clearInterval(messaggio)
+                console.log("Messaggio terminato")
+            }
+
+        }, time)
+
+    }
+}
+
+const conteggio1 = stampaOgniSecondo(1000)
+conteggio1()
